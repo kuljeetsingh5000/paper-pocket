@@ -1,0 +1,21 @@
+{
+  "name": "paper-pocket",
+  "version": "0.1.0",
+  "description": "Always-on-top desktop shelf for keeping files and snippets handy.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "start": "electron .",
+    "build": "vite build",
+    "package": "npm run build && electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12",
+    "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}

@@ -1,0 +1,1526 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+
+  background: transparent;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+/* =========================================
+   SHELL
+========================================= */
+
+.shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.shell.expanded {
+  padding: 14px 14px 12px 54px;
+}
+
+/* =========================================
+   PAPER
+========================================= */
+
+.paper {
+  position: absolute;
+
+  inset: 12px 12px 10px 32px;
+
+  background: #fffaf0;
+
+  border: 2px solid #2b2521;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 16px 35px
+    rgba(0, 0, 0, 0.22);
+
+  padding: 12px 11px 9px;
+
+  transform: rotate(-0.8deg);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+
+  will-change: transform;
+}
+
+.over .paper {
+  transform:
+    rotate(-1.6deg)
+    scale(1.02);
+
+  box-shadow:
+    0 20px 45px
+    rgba(0, 0, 0, 0.28);
+}
+
+/* =========================================
+   TAPE
+========================================= */
+
+.tape {
+  position: absolute;
+
+  width: 70px;
+  height: 18px;
+
+  top: -7px;
+  left: 60%;
+
+  transform:
+    translateX(-50%)
+    rotate(3deg);
+
+  background:
+    rgba(245, 219, 142, 0.76);
+
+  border:
+    1px solid
+    rgba(100, 70, 10, 0.15);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  cursor: move;
+
+  user-select: none;
+}
+
+.title {
+  font-size: 18px;
+
+  font-weight: 900;
+
+  letter-spacing: -0.4px;
+
+  color: #24201d;
+}
+
+.subtitle {
+  margin-top: 2px;
+
+  font-size: 10px;
+
+  color: #786e64;
+}
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.search {
+  width: 100%;
+
+  margin: 10px 0 9px;
+
+  border:
+    1px solid
+    #d8cfc1;
+
+  outline: none;
+
+  border-radius: 9px;
+
+  padding: 8px 10px;
+
+  font-size: 11px;
+
+  background: #fffdf8;
+
+  color: #24201d;
+
+  position: relative;
+
+  z-index: 50;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.search:focus {
+  border-color: #a99a86;
+}
+
+/* =========================================
+   DROPZONE
+========================================= */
+
+.dropzone {
+  height: 130px;
+
+  overflow: auto;
+
+  padding-right: 2px;
+}
+
+.empty {
+  height: 100%;
+
+  min-height: 110px;
+
+  border:
+    1.5px dashed
+    #c9bda9;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  color: #766c62;
+
+  background:
+    rgba(255, 255, 255, 0.35);
+
+  padding: 8px;
+}
+
+.emptyIcon {
+  font-size: 20px;
+
+  margin-bottom: 2px;
+}
+
+.empty strong {
+  font-size: 11px;
+
+  color: #403831;
+}
+
+.empty span {
+  font-size: 8.5px;
+
+  text-align: center;
+
+  line-height: 1.3;
+}
+
+/* =========================================
+   ITEMS
+========================================= */
+
+.item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  background: #fffdf8;
+
+  border:
+    1px solid
+    #ded6ca;
+
+  border-radius: 10px;
+
+  padding: 7px 8px;
+
+  margin-bottom: 7px;
+
+  cursor: grab;
+
+  user-select: none;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.item:hover {
+  background: #fffaf0;
+
+  transform:
+    translateY(-1px);
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: #f4ead9;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+  flex-shrink: 0;
+}
+
+.meta {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.name {
+  font-size: 10px;
+
+  font-weight: 750;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  color: #2d2824;
+}
+
+.size {
+  font-size: 8px;
+
+  color: #92877b;
+
+  margin-top: 2px;
+}
+
+.remove {
+  border: 0;
+
+  background: transparent;
+
+  color: #a29a90;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  width: 22px;
+
+  height: 22px;
+
+  border-radius: 6px;
+
+  flex-shrink: 0;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.remove:hover {
+  background: #efe6da;
+
+  color: #544a42;
+}
+
+/* =========================================
+   CHARACTER
+========================================= */
+
+.character {
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 40px;
+
+  width: 110px;
+
+  height: 136px;
+
+  transform:
+    translateX(-50%);
+
+  z-index: 5;
+
+  filter:
+    drop-shadow(
+      0 8px 8px
+      rgba(0, 0, 0, 0.15)
+    );
+
+  cursor: pointer;
+
+  user-select: none;
+
+  touch-action: none;
+
+  transition:
+    transform 0.2s ease,
+    left 0.2s ease,
+    bottom 0.2s ease;
+}
+
+.character:hover {
+  transform:
+    translateX(-50%)
+    translateY(-2px);
+}
+
+.anime-head {
+  position: absolute;
+
+  left: 5px;
+
+  bottom: 56px;
+
+  width: 96px;
+
+  height: 74px;
+
+  border:
+    2px solid
+    #2b2521;
+
+  border-radius:
+    48% 52% 50% 50%;
+
+  background: #f4c6b8;
+
+  display: grid;
+
+  place-items: center;
+
+  font-size: 28px;
+
+  letter-spacing: 5px;
+
+  transform:
+    rotate(-4deg);
+
+  pointer-events: none;
+}
+
+.anime-body {
+  position: absolute;
+
+  left: 27px;
+
+  bottom: 6px;
+
+  width: 56px;
+
+  height: 60px;
+
+  border:
+    2px solid
+    #2b2521;
+
+  border-radius:
+    20px 20px
+    12px 12px;
+
+  background: #d7e5ff;
+
+  display: grid;
+
+  place-items: center;
+
+  color: #2b2521;
+
+  font-size: 15px;
+
+  transform:
+    rotate(2deg);
+
+  pointer-events: none;
+}
+
+.shell.expanded .character {
+  left: 6px;
+
+  bottom: 16px;
+
+  transform: scale(0.64);
+
+  transform-origin:
+    bottom left;
+}
+
+.shell.expanded
+.character:hover {
+  transform:
+    scale(0.64)
+    translateY(-2px);
+}
+
+/* =========================================
+   SPEECH BUBBLE
+========================================= */
+
+.bubble {
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 172px;
+
+  transform:
+    translateX(-50%);
+
+  max-width: 180px;
+
+  background: #fffaf0;
+
+  border:
+    2px solid
+    #2b2521;
+
+  border-radius: 12px;
+
+  padding: 7px 11px;
+
+  font-size: 10.5px;
+
+  font-weight: 700;
+
+  color: #2b2521;
+
+  text-align: center;
+
+  box-shadow:
+    0 6px 14px
+    rgba(0, 0, 0, 0.18);
+
+  z-index: 6;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+}
+
+.bubble:after {
+  content: '';
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: -7px;
+
+  transform:
+    translateX(-50%);
+
+  border-width:
+    7px 6px 0 6px;
+
+  border-style: solid;
+
+  border-color:
+    #2b2521
+    transparent
+    transparent
+    transparent;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.actions {
+  display: flex;
+
+  gap: 5px;
+
+  align-items: center;
+
+  position: relative;
+
+  z-index: 50;
+}
+
+.tinyBtn {
+  width: 26px;
+
+  height: 26px;
+
+  border:
+    1px solid
+    #d8cfc1;
+
+  background: #fffdf8;
+
+  color: #403831;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: 800;
+
+  position: relative;
+
+  z-index: 50;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.tinyBtn:hover {
+  transform:
+    translateY(-1px);
+
+  background: #fffaf0;
+}
+
+.tinyBtn:disabled {
+  opacity: 0.4;
+
+  cursor: default;
+}
+
+/* =========================================
+   SNIPPETS
+========================================= */
+
+.snippetRow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  width: 100%;
+
+  margin-bottom: 9px;
+
+  position: relative;
+
+  z-index: 50;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.snippetInput {
+  flex: 1;
+
+  min-width: 0;
+
+  border:
+    1px solid
+    #d8cfc1;
+
+  outline: none;
+
+  border-radius: 9px;
+
+  padding: 8px 10px;
+
+  font-size: 11px;
+
+  background: #fffdf8;
+
+  color: #24201d;
+
+  position: relative;
+
+  z-index: 50;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.snippetInput:focus {
+  border-color: #a99a86;
+}
+
+.taskifyBtn {
+  width: 32px;
+
+  height: 30px;
+
+  border:
+    1px solid
+    #cfc3b2;
+
+  border-radius: 8px;
+
+  background: #f5eddc;
+
+  color: #2b2521;
+
+  font-size: 16px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  position: relative;
+
+  z-index: 60;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.taskifyBtn:hover:not(:disabled) {
+  background: #eadcbc;
+
+  transform:
+    translateY(-1px);
+}
+
+.taskifyBtn:disabled {
+  opacity: 0.4;
+
+  cursor: default;
+}
+
+/* =========================================
+   RESIZE
+========================================= */
+
+.resizeGrip {
+  position: absolute;
+
+  right: 2px;
+
+  bottom: 2px;
+
+  width: 18px;
+
+  height: 18px;
+
+  cursor: nwse-resize;
+
+  z-index: 20;
+
+  -webkit-app-region: no-drag !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0 50%,
+      #c9bda9 50% 60%,
+      transparent 60% 70%,
+      #c9bda9 70% 80%,
+      transparent 80% 100%
+    );
+}
+
+/* =========================================
+   STATES
+========================================= */
+
+.shell.compact {
+  padding: 0;
+}
+
+.over .character {
+  transform:
+    translateX(-50%)
+    scale(1.05);
+}
+
+.shell.expanded.over .character {
+  transform:
+    scale(0.64)
+    scale(1.05);
+}
+
+/* =========================================
+   REACTIONS
+========================================= */
+
+.dropped .anime-body {
+  animation:
+    bounce 0.5s ease;
+}
+
+.dropped .paper {
+  animation:
+    settle 0.5s ease;
+}
+
+@keyframes bounce {
+  0% {
+    transform:
+      translateY(0)
+      rotate(2deg);
+  }
+
+  30% {
+    transform:
+      translateY(-6px)
+      rotate(2deg);
+  }
+
+  60% {
+    transform:
+      translateY(2px)
+      rotate(2deg);
+  }
+
+  100% {
+    transform:
+      translateY(0)
+      rotate(2deg);
+  }
+}
+
+@keyframes settle {
+  0% {
+    transform:
+      rotate(-0.8deg)
+      scale(1.03);
+  }
+
+  100% {
+    transform:
+      rotate(-0.8deg)
+      scale(1);
+  }
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.dropzone::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dropzone::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropzone::-webkit-scrollbar-thumb {
+  background: #d8cfc1;
+
+  border-radius: 10px;
+}
+
+/* =========================================
+   CHARACTER STUDIO
+========================================= */
+
+.characterImage {
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  width: 170px;
+
+  height: 170px;
+
+  object-fit: contain;
+
+  transform-origin:
+    center center;
+
+  user-select: none;
+
+  pointer-events: none;
+
+  max-width: none;
+
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.characterStudio {
+  position: absolute;
+
+  z-index: 300;
+
+  left: 14px;
+
+  right: 14px;
+
+  top: 14px;
+
+  bottom: 14px;
+
+  background: #fffaf0;
+
+  border:
+    2px solid
+    #2b2521;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 50px
+    rgba(0, 0, 0, 0.35);
+
+  padding: 14px;
+
+  overflow: auto;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.studioHeader {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.studioTitle {
+  font-size: 17px;
+
+  font-weight: 900;
+
+  color: #24201d;
+}
+
+.studioSubtitle {
+  font-size: 9px;
+
+  color: #786e64;
+
+  margin-top: 2px;
+}
+
+.studioClose {
+  width: 28px;
+
+  height: 28px;
+
+  border:
+    1px solid
+    #d8cfc1;
+
+  background: #fffdf8;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 17px;
+
+  font-weight: 800;
+
+  position: relative;
+
+  z-index: 350;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.studioPreview {
+  height: 115px;
+
+  margin-top: 12px;
+
+  border:
+    1.5px dashed
+    #c9bda9;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      45deg,
+      #f3ecdf 25%,
+      transparent 25%
+    ),
+    linear-gradient(
+      -45deg,
+      #f3ecdf 25%,
+      transparent 25%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 75%,
+      #f3ecdf 75%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 75%,
+      #f3ecdf 75%
+    );
+
+  background-size:
+    18px 18px;
+
+  background-position:
+    0 0,
+    0 9px,
+    9px -9px,
+    -9px 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.studioPreview img {
+  width: 130px;
+
+  height: 130px;
+
+  object-fit: contain;
+
+  max-width: none;
+
+  pointer-events: none;
+}
+
+.previewEmpty {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  color: #786e64;
+}
+
+.studioButtons {
+  display: flex;
+
+  gap: 7px;
+
+  margin-top: 10px;
+}
+
+.studioPrimary,
+.studioSecondary,
+.flipButton {
+  border-radius: 8px;
+
+  padding: 7px 10px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  position: relative;
+
+  z-index: 350;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.studioPrimary {
+  flex: 1;
+
+  border:
+    2px solid
+    #2b2521;
+
+  background: #2b2521;
+
+  color: #fffaf0;
+}
+
+.studioSecondary {
+  border:
+    1px solid
+    #d8cfc1;
+
+  background: #fffdf8;
+
+  color: #514840;
+}
+
+.control {
+  display: block;
+
+  margin-top: 11px;
+
+  position: relative;
+
+  z-index: 350;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.control span {
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  color: #62584f;
+
+  margin-bottom: 4px;
+}
+
+.control b {
+  color: #2b2521;
+}
+
+.control input[type='range'] {
+  width: 100%;
+
+  accent-color: #2b2521;
+
+  cursor: pointer;
+
+  position: relative;
+
+  z-index: 350;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.flipButton {
+  width: 100%;
+
+  margin-top: 12px;
+
+  border:
+    1px solid
+    #d8cfc1;
+
+  background: #fffdf8;
+
+  color: #403831;
+}
+
+/* =========================================
+   CUSTOM CHARACTER POSITIONING
+========================================= */
+
+.hasCustomCharacter .character {
+  width: 170px;
+
+  height: 190px;
+
+  left: 50%;
+
+  bottom: 15px;
+
+  overflow: visible;
+}
+
+.hasCustomCharacter .characterImage {
+  left: 50%;
+
+  top: 50%;
+
+  width: 170px;
+
+  height: 170px;
+
+  transform-origin:
+    center center;
+}
+
+.hasCustomCharacter .character:hover {
+  transform:
+    translateX(-50%);
+}
+
+.hasCustomCharacter .bubble {
+  display: none;
+}
+
+.hasCustomCharacter.over .character {
+  transform:
+    translateX(-50%);
+}
+
+.shell.expanded.hasCustomCharacter
+.character {
+  left: 6px;
+
+  bottom: 16px;
+
+  transform:
+    scale(0.64);
+
+  transform-origin:
+    bottom left;
+}
+
+.shell.expanded.hasCustomCharacter
+.character:hover {
+  transform:
+    scale(0.64);
+}
+
+/* =========================================
+   CHECKLIST PANEL
+========================================= */
+
+.checklistPanel {
+  position: absolute;
+
+  z-index: 300;
+
+  left: 10px;
+
+  right: 10px;
+
+  top: 10px;
+
+  bottom: 10px;
+
+  background: #fffaf0;
+
+  border:
+    2px solid
+    #2b2521;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 50px
+    rgba(0, 0, 0, 0.35);
+
+  padding: 13px;
+
+  overflow: auto;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.checklistHeader {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+}
+
+.checklistTitle {
+  font-size: 17px;
+
+  font-weight: 900;
+
+  color: #24201d;
+}
+
+.checklistSubtitle {
+  margin-top: 2px;
+
+  font-size: 9px;
+
+  color: #786e64;
+}
+
+.progressTrack {
+  height: 7px;
+
+  width: 100%;
+
+  border-radius: 99px;
+
+  background: #e9dfd0;
+
+  overflow: hidden;
+
+  margin-bottom: 10px;
+}
+
+.progressBar {
+  height: 100%;
+
+  border-radius: 99px;
+
+  background: #2b2521;
+
+  transition:
+    width 0.2s ease;
+}
+
+.nextTask {
+  border:
+    1px solid
+    #dfd2c0;
+
+  border-radius: 10px;
+
+  background: #fffdf8;
+
+  padding: 8px 9px;
+
+  margin-bottom: 9px;
+}
+
+.nextTask span {
+  display: block;
+
+  font-size: 8px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.7px;
+
+  color: #988b7d;
+
+  margin-bottom: 3px;
+}
+
+.nextTask strong {
+  display: block;
+
+  font-size: 10px;
+
+  line-height: 1.3;
+
+  color: #2d2824;
+}
+
+.taskList {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.taskRow {
+  display: grid;
+
+  grid-template-columns:
+    22px
+    1fr
+    auto;
+
+  align-items: center;
+
+  gap: 7px;
+
+  width: 100%;
+
+  text-align: left;
+
+  border:
+    1px solid
+    #ded6ca;
+
+  background: #fffdf8;
+
+  border-radius: 10px;
+
+  padding: 8px;
+
+  cursor: pointer;
+
+  color: #2d2824;
+
+  position: relative;
+
+  z-index: 350;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.taskRow:hover {
+  background: #fffaf0;
+
+  transform:
+    translateY(-1px);
+}
+
+.taskStatus {
+  width: 20px;
+
+  height: 20px;
+
+  display: grid;
+
+  place-items: center;
+
+  font-size: 16px;
+
+  font-weight: 900;
+
+  color: #514840;
+}
+
+.taskText {
+  min-width: 0;
+
+  font-size: 10px;
+
+  line-height: 1.3;
+
+  font-weight: 700;
+}
+
+.taskState {
+  font-size: 7px;
+
+  font-weight: 800;
+
+  color: #94877a;
+
+  white-space: nowrap;
+}
+
+.taskRow.doing {
+  border-color:
+    #c8b89d;
+
+  background: #fff8e8;
+}
+
+.taskRow.doing .taskStatus {
+  color: #8a7042;
+}
+
+.taskRow.done {
+  opacity: 0.6;
+}
+
+.taskRow.done .taskText {
+  text-decoration:
+    line-through;
+}
+
+.taskRow.done .taskStatus {
+  color: #5c765b;
+}
+
+.clearChecklist {
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 7px;
+
+  border-radius: 8px;
+
+  border:
+    1px solid
+    #d8cfc1;
+
+  background: #fffdf8;
+
+  color: #62584f;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  position: relative;
+
+  z-index: 350;
+
+  -webkit-app-region: no-drag !important;
+
+  pointer-events: auto !important;
+}
+
+.clearChecklist:hover {
+  background: #f3e9dc;
+}
+
+/* =========================================
+   GLOBAL INTERACTIVE FIX
+========================================= */
+
+.paper input,
+.paper button,
+.paper label,
+.characterStudio *,
+.checklistPanel * {
+  -webkit-app-region: no-drag !important;
+}
+
+.paper input,
+.paper button,
+.characterStudio *,
+.checklistPanel * {
+  pointer-events: auto;
+}
+.snippetInput {
+  resize: none;
+  min-height: 34px;
+  max-height: 72px;
+  line-height: 1.3;
+}
+
+.snippetActions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
